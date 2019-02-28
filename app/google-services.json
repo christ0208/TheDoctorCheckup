@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "506506501335",
+    "firebase_url": "https://thedoctorcheckup.firebaseio.com",
+    "project_id": "thedoctorcheckup",
+    "storage_bucket": "thedoctorcheckup.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506506501335:android:111a8a68913b7a29",
+        "android_client_info": {
+          "package_name": "edu.bluejack181.thedoctorcheckups"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "506506501335-vgl9vi1fh6sq964b8ib06m3p8sff10rf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.bluejack181.thedoctorcheckups",
+            "certificate_hash": "aa25b1e777728e9149402bcb4258d476f5a049c7"
+          }
+        },
+        {
+          "client_id": "506506501335-1derjsvkvbo7sp6hehqbdj1pk07vur1d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7xAHA-LaoyqnVXs24xxHkrjDsOBIsknQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "506506501335-1derjsvkvbo7sp6hehqbdj1pk07vur1d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506506501335:android:994a81c9c70f683f",
+        "android_client_info": {
+          "package_name": "edu.bluejack18_1.thedoctorcheckup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "506506501335-4l9enaa2icig3qfoqgvcp3ge3sbt0inu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.bluejack18_1.thedoctorcheckup",
+            "certificate_hash": "aa25b1e777728e9149402bcb4258d476f5a049c7"
+          }
+        },
+        {
+          "client_id": "506506501335-1derjsvkvbo7sp6hehqbdj1pk07vur1d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7xAHA-LaoyqnVXs24xxHkrjDsOBIsknQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "506506501335-1derjsvkvbo7sp6hehqbdj1pk07vur1d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
