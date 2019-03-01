@@ -13,7 +13,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"/>
+        android:text="Register"
+        android:textAlignment="center"
+        android:textSize="24dp"/>
 
     <EditText
         android:id="@+id/txt_name"
@@ -35,6 +37,7 @@
         android:text="Gender"/>
 
     <RadioGroup
+        android:id="@+id/gender_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -65,13 +68,15 @@
         android:id="@+id/txt_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"/>
+        android:hint="Password"
+        android:inputType="textPassword"/>
 
     <EditText
         android:id="@+id/txt_confirm_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Confirm Password"/>
+        android:hint="Confirm Password"
+        android:inputType="textPassword"/>
 
     <Button
         android:id="@+id/btn_register"
