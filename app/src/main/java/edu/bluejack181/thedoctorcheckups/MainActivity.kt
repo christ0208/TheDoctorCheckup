@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
                     .addOnCompleteListener(this){task->
                         if(task.isSuccessful){
                             Toast.makeText(applicationContext, "Success Login!", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(applicationContext, DiagnoseIllnessActivity::class.java))
                         }
                         else{
                             Toast.makeText(applicationContext, "Wrong email or password", Toast.LENGTH_SHORT).show()
