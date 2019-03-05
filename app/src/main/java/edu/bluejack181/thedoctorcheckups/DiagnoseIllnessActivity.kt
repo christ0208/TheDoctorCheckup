@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.RadioGroup
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
@@ -27,6 +28,7 @@ class DiagnoseIllnessActivity : AppCompatActivity() {
     private val LANGUAGE = "en-gb"
 
     private lateinit var drawerLayout: DrawerLayout
+    private lateinit var genderChosen: String
 
     private var idSymptoms: ArrayList<Int> = ArrayList<Int>()
     private var symptoms: ArrayList<String> = ArrayList<String>()
@@ -77,6 +79,18 @@ class DiagnoseIllnessActivity : AppCompatActivity() {
             adapterConfirmSymptoms.notifyDataSetChanged()
         }
 
+        btn_proceed.setOnClickListener {
+            var ids: String = ""
+            for (i in 0 until idConfirmedSymptoms.size){
+                if(ids === ""){
+                    ids = idConfirmedSymptoms.get(i).toString()
+                }
+                else{
+                    ids += "," + idConfirmedSymptoms.get(i).toString()
+                }
+            }
+        }
+
         btn_reset.setOnClickListener{
             idConfirmedSymptoms.clear()
             confirmedSymptoms.clear()
@@ -85,6 +99,7 @@ class DiagnoseIllnessActivity : AppCompatActivity() {
 
         list_symptoms.layoutManager = LinearLayoutManager(this)
         list_symptoms.adapter = adapterConfirmSymptoms
+
     }
 
     fun getSymptoms(){
