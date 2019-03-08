@@ -23,9 +23,11 @@ import org.json.JSONArray
 
 class DiagnoseIllnessActivity : AppCompatActivity() {
 
-    private val URL: String = "https://sandbox-healthservice.priaid.ch"
-    private val TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRkdW1teTczOUBnbWFpbC5jb20iLCJyb2xlIjoiVXNlciIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3NpZCI6IjQ2ODgiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ZlcnNpb24iOiIyMDAiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL2xpbWl0IjoiOTk5OTk5OTk5IiwiaHR0cDovL2V4YW1wbGUub3JnL2NsYWltcy9tZW1iZXJzaGlwIjoiUHJlbWl1bSIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGFuZ3VhZ2UiOiJlbi1nYiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvZXhwaXJhdGlvbiI6IjIwOTktMTItMzEiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXBzdGFydCI6IjIwMTktMDItMjYiLCJpc3MiOiJodHRwczovL3NhbmRib3gtYXV0aHNlcnZpY2UucHJpYWlkLmNoIiwiYXVkIjoiaHR0cHM6Ly9oZWFsdGhzZXJ2aWNlLnByaWFpZC5jaCIsImV4cCI6MTU1MTc2NjYxMCwibmJmIjoxNTUxNzU5NDEwfQ.mczi-3Gqb2wBXYtQw6QBos4xTbfQZRmDZS4q6M5eE5w"
-    private val LANGUAGE = "en-gb"
+    private val api: AccessApi = AccessApi()
+
+    private val URL: String = api.getUrl()
+    private val TOKEN = api.getToken()
+    private val LANGUAGE = api.getLang()
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var genderChosen: String
@@ -89,6 +91,8 @@ class DiagnoseIllnessActivity : AppCompatActivity() {
                     ids += "," + idConfirmedSymptoms.get(i).toString()
                 }
             }
+            getDiagnosis(ids)
+
         }
 
         btn_reset.setOnClickListener{
@@ -99,7 +103,12 @@ class DiagnoseIllnessActivity : AppCompatActivity() {
 
         list_symptoms.layoutManager = LinearLayoutManager(this)
         list_symptoms.adapter = adapterConfirmSymptoms
+    }
 
+    fun getDiagnosis(id: String){
+        var i = Intent(this, ResultDiagnosisActivity::class.java)
+        i.putExtra("ids", id)
+        startActivity(i)
     }
 
     fun getSymptoms(){
