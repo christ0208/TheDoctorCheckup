@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ResultDiagnosisActivity">
+    tools:context=".ResultDiagnosisActivity"
+    android:id="@+id/drawer_layout">
 
     <FrameLayout
         android:id="@+id/content_frame"
@@ -24,7 +25,10 @@
             android:layout_marginTop="55dp"
             android:orientation="vertical">
 
-            
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_diagnose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
