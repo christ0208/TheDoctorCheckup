@@ -24,13 +24,13 @@ import org.json.JSONArray
 
 class DiagnoseIllnessActivity : AppCompatActivity() {
 
-    private val api: AccessApi = AccessApi()
+    private lateinit var api: AccessApi
+
+    private lateinit var URL: String
+    private lateinit var TOKEN: String
+    private lateinit var LANGUAGE: String
 
     private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
-
-    private val URL: String = api.getUrl()
-    private val TOKEN = api.getToken()
-    private val LANGUAGE = api.getLang()
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var genderChosen: String
@@ -44,6 +44,10 @@ class DiagnoseIllnessActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_diagnose_illness)
 
+        api = AccessApi(applicationContext)
+        URL = api.getUrl()
+        TOKEN = api.getToken()
+        LANGUAGE = api.getLang()
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 

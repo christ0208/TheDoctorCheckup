@@ -27,11 +27,11 @@ import kotlin.math.max
 
 class ResultDiagnosisActivity : AppCompatActivity() {
 
-    private var api: AccessApi = AccessApi()
+    private lateinit var api: AccessApi
 
-    private val URL: String = api.getUrl()
-    private val TOKEN: String = api.getToken()
-    private val LANGUAGE: String = api.getLang()
+    private lateinit var URL: String
+    private lateinit var TOKEN: String
+    private lateinit var LANGUAGE: String
 
     private lateinit var drawerLayout: DrawerLayout
 
@@ -48,6 +48,10 @@ class ResultDiagnosisActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result_diagnosis)
 
+        api = AccessApi(applicationContext)
+        URL = api.getUrl()
+        TOKEN = api.getToken()
+        LANGUAGE = api.getLang()
         queue = Volley.newRequestQueue(this)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
