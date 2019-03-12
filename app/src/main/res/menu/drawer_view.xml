@@ -6,6 +6,9 @@
             android:id="@+id/nav_diagnose"
             android:title="Diagnose Illness"/>
         <item
+            android:id="@+id/nav_history"
+            android:title="Health History"/>
+        <item
             android:id="@+id/nav_forum"
             android:title="Health Forum"/>
         <item

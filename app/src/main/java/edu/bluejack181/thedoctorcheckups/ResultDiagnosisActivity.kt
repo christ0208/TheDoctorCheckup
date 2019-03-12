@@ -21,6 +21,9 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_result_diagnosis.*
 import org.json.JSONArray
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.math.max
 
 class ResultDiagnosisActivity : AppCompatActivity() {
 
@@ -35,6 +38,7 @@ class ResultDiagnosisActivity : AppCompatActivity() {
     private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val mDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     private var databaseRef: DatabaseReference = mDatabase.getReference("users")
+    private var databaseRefIllness: DatabaseReference = mDatabase.getReference("illness_history")
     private var userId: String = ""
     private var gender: String = ""
     private var year: Int = 0
@@ -63,6 +67,21 @@ class ResultDiagnosisActivity : AppCompatActivity() {
             when(menuItem.itemId){
                 R.id.nav_diagnose ->{
                     startActivity(Intent(applicationContext, DiagnoseIllnessActivity::class.java))
+                    finish()
+                }
+                R.id.nav_history -> {
+                    startActivity(Intent(applicationContext, HealthHistoryActivity::class.java))
+                }
+                R.id.nav_forum ->{
+                    Toast.makeText(applicationContext, "Forum", Toast.LENGTH_SHORT).show()
+                }
+                R.id.nav_profile -> {
+                    Toast.makeText(applicationContext, "Profile", Toast.LENGTH_SHORT).show()
+                }
+                R.id.nav_logout ->{
+                    mAuth.signOut()
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
                 }
             }
 
@@ -73,27 +92,53 @@ class ResultDiagnosisActivity : AppCompatActivity() {
 
         var id = intent.getStringExtra("ids")
         userId = mAuth.currentUser!!.uid
-//        var year: Int = getYear()
-//        var gender: String = getGender()
 
-        getGender()
-        getYear(id)
-//        yearThread.start()
-//        genderThread.start()
-//
-//        yearThread.join()
-//        genderThread.join()
+//        Toast.makeText(applicationContext, userId, Toast.LENGTH_SHORT).show()
 
-//        getDiagnosis(id, year, gender)
+        getGender(id)
+//        getYear(id)
+
+//        insertNewDiagnosis(userId)
     }
 
-    private fun getGender(){
+    private fun insertNewDiagnosis(userId: String){
+//        butuh id user, nama penyakit, dan tanggal
+        var recAccuracy: Int = 0
+        var maxAccuracy: Int = 0
+        var nameIllness: String = ""
+        for (i in 0 until list_diagnosis.size){
+            val e = list_diagnosis.get(i)
+            maxAccuracy = max(e.accuracy, maxAccuracy)
+            if(maxAccuracy != recAccuracy){
+                nameIllness = e.name
+            }
+
+            recAccuracy = maxAccuracy
+        }
+
+        var primaryKey = databaseRefIllness.push().key.toString()
+        var simpledate = SimpleDateFormat("dd-MM-yyyy")
+        val date = Date()
+
+        var curr_date = simpledate.format(date)
+
+        var ill_history = IllnessHistory(mAuth.currentUser!!.uid, nameIllness, curr_date)
+//        Toast.makeText(applicationContext, nameIllness, Toast.LENGTH_SHORT).show()
+
+        databaseRefIllness.child(primaryKey).setValue(ill_history).addOnCompleteListener{
+            Toast.makeText(applicationContext, "Inserted into history", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun getGender(id: String){
         var data = databaseRef.child(userId).child("gender")
 //        var gender: String = ""
         var listener = object: ValueEventListener{
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                Toast.makeText(applicationContext, dataSnapshot.getValue().toString(), Toast.LENGTH_SHORT).show()
                 gender = dataSnapshot.getValue().toString()
 //                Toast.makeText(applicationContext, gender, Toast.LENGTH_SHORT).show()
+                getYear(id)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -111,6 +156,7 @@ class ResultDiagnosisActivity : AppCompatActivity() {
         var listener = object: ValueEventListener{
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 year = dataSnapshot.getValue().toString().toInt()
+//                Toast.makeText(applicationContext, dataSnapshot.getValue().toString() + " " + gender, Toast.LENGTH_SHORT).show()
 //                Toast.makeText(applicationContext, year.toString(), Toast.LENGTH_SHORT).show()
 //                Toast.makeText(applicationContext, id + " " + year.toString() + " " + gender, Toast.LENGTH_SHORT).show()
                 getDiagnosis(id, year, gender)
@@ -135,7 +181,10 @@ class ResultDiagnosisActivity : AppCompatActivity() {
             for (i in 0 until jsonArr.length()){
                 val item = jsonArr.getJSONObject(i)
                 val issue = item.getJSONObject("Issue")
-                list_diagnosis.add(Diagnosis(issue.getInt("ID"), issue.getString("Name"), issue.getInt("Accuracy")))
+                val accuracy = issue.getInt("Accuracy")
+                if(accuracy >= 75) {
+                    list_diagnosis.add(Diagnosis(issue.getInt("ID"), issue.getString("Name"), issue.getInt("Accuracy")))
+                }
             }
 //            Toast.makeText(applicationContext, stringResponse, Toast.LENGTH_SHORT).show()
             getInfo()
@@ -172,6 +221,8 @@ class ResultDiagnosisActivity : AppCompatActivity() {
         val adapterConfirmSymptoms = ResultDiagnosisAdapter(list_diagnosis, this)
         list_diagnose.layoutManager = LinearLayoutManager(this)
         list_diagnose.adapter = adapterConfirmSymptoms
+
+        insertNewDiagnosis(userId)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
