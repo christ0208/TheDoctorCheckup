@@ -74,10 +74,12 @@ class ResultDiagnosisActivity : AppCompatActivity() {
                 }
                 R.id.nav_history -> {
                     startActivity(Intent(applicationContext, HealthHistoryActivity::class.java))
+                    finish()
                 }
                 R.id.nav_forum ->{
 //                    Toast.makeText(applicationContext, "Forum", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(applicationContext, ForumActivity::class.java))
+                    finish()
                 }
                 R.id.nav_profile -> {
                     Toast.makeText(applicationContext, "Profile", Toast.LENGTH_SHORT).show()
