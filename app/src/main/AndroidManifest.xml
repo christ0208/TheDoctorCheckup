@@ -22,7 +22,8 @@
         <activity android:name=".DiagnoseIllnessActivity" />
         <activity android:name=".ResultDiagnosisActivity" />
         <activity android:name=".HealthHistoryActivity" />
-        <activity android:name=".HealthForumActivity"></activity>
+        <activity android:name=".HealthForumActivity" />
+        <activity android:name=".ForumActivity"></activity>
     </application>
 
 </manifest>

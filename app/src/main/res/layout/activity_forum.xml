@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HealthForumActivity">
+    tools:context=".ForumActivity"
+    android:id="@+id/drawer_layout">
+
 
     <FrameLayout
         android:id="@+id/content_frame"

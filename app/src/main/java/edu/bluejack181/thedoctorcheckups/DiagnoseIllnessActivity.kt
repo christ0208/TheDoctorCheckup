@@ -67,7 +67,8 @@ class DiagnoseIllnessActivity : AppCompatActivity() {
                     startActivity(Intent(applicationContext, HealthHistoryActivity::class.java))
                 }
                 R.id.nav_forum ->{
-                    Toast.makeText(applicationContext, "Forum", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(applicationContext, "Forum", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(applicationContext, ForumActivity::class.java))
                 }
                 R.id.nav_profile -> {
                     Toast.makeText(applicationContext, "Profile", Toast.LENGTH_SHORT).show()
