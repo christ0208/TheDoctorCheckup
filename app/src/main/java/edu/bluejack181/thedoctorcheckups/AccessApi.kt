@@ -40,19 +40,7 @@ class AccessApi(context: Context) {
         generateToken()
     }
 
-    public fun getUrl(): String{
-        return URL
-    }
-
-    public fun getToken(): String{
-        return TOKEN
-    }
-
-    public fun getLang(): String{
-        return LANGUAGE
-    }
-
-    public fun generateToken(){
+    fun generateToken(){
         val keySpec: SecretKeySpec = SecretKeySpec(PASSWORD.toByteArray(), ALGORITHM)
         var computedString: String = ""
         val mac: Mac = Mac.getInstance(ALGORITHM)
@@ -62,10 +50,10 @@ class AccessApi(context: Context) {
         val encoder: BASE64Encoder = BASE64Encoder()
         computedString = encoder.encode(res)
 
-        var queue = Volley.newRequestQueue(context)
+        var queue = VolleySingleton.getInstance(context)
 
         var strRequest = object: StringRequest(Request.Method.POST, authUrl, Response.Listener<String> { response ->
-//            Toast.makeText(context, response, Toast.LENGTH_LONG).show()
+//            Toast.makeText(context, response, Toast.LENGTH_SHORT).show()
             var res = JSONObject(response)
             TOKEN = res.getString("Token")
         }, Response.ErrorListener {error ->
@@ -84,7 +72,7 @@ class AccessApi(context: Context) {
             }
         }
 
-        queue.add(strRequest)
+        queue.addToRequestQueue(strRequest)
 //        val httpPost = HttpPost(authUrl)
 //        httpPost.setHeader("Authorization", "Bearer " + USERNAME + ":" + computedString)
 //
@@ -99,6 +87,18 @@ class AccessApi(context: Context) {
 //            val accessToken = objectMapper.readValue(response.entity.content, AccessToken::class.java)
 //            TOKEN = accessToken.Token
 //        }
+    }
+
+    public fun getUrl(): String{
+        return URL
+    }
+
+    public fun getToken(): String{
+        return TOKEN
+    }
+
+    public fun getLang(): String{
+        return LANGUAGE
     }
 
 }

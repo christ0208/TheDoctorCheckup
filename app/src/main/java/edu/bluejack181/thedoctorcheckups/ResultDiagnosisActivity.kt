@@ -43,16 +43,15 @@ class ResultDiagnosisActivity : AppCompatActivity() {
     private var gender: String = ""
     private var year: Int = 0
     private var list_diagnosis = ArrayList<Diagnosis>()
-    private lateinit var queue:RequestQueue
+    private lateinit var queue: VolleySingleton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result_diagnosis)
 
         api = AccessApi(applicationContext)
         URL = api.getUrl()
-        TOKEN = api.getToken()
         LANGUAGE = api.getLang()
-        queue = Volley.newRequestQueue(this)
+        queue = VolleySingleton.getInstance(applicationContext)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -179,6 +178,7 @@ class ResultDiagnosisActivity : AppCompatActivity() {
 
     fun getDiagnosis(id: String, year: Int, gender: String){
 //        Toast.makeText(applicationContext, year.toString() + " " + gender, Toast.LENGTH_SHORT).show()
+        TOKEN = api.getToken()
         var target = URL + "/diagnosis?token=" + TOKEN + "&language=" + LANGUAGE + "&symptoms=[" + id + "]&gender=" + gender + "&year_of_birth=" + year.toString()
         val request = StringRequest(Request.Method.GET, target, Response.Listener {response ->
             var stringResponse = response.toString()
@@ -197,13 +197,14 @@ class ResultDiagnosisActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, error.toString(), Toast.LENGTH_SHORT).show()
         })
 
-        queue.add(request)
+        queue.addToRequestQueue(request)
     }
 
     fun getInfo(){
         for (i in 0 until list_diagnosis.size){
             var diagnosis = list_diagnosis.get(i)
             var id = diagnosis.id
+            TOKEN = api.getToken()
             var targetUrl = URL + "/issues/" + id + "/info?token=" + TOKEN + "&language=" + LANGUAGE
             val request = StringRequest(Request.Method.GET,targetUrl, Response.Listener { response ->
                 val stringResponse = response.toString()
@@ -218,7 +219,7 @@ class ResultDiagnosisActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, error.toString(), Toast.LENGTH_SHORT).show()
             })
 
-            queue.add(request)
+            queue.addToRequestQueue(request)
         }
     }
 

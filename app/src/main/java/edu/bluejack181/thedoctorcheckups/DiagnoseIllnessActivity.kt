@@ -21,6 +21,8 @@ import com.android.volley.toolbox.Volley
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_diagnose_illness.*
 import org.json.JSONArray
+import java.util.*
+import kotlin.concurrent.schedule
 
 class DiagnoseIllnessActivity : AppCompatActivity() {
 
@@ -46,7 +48,6 @@ class DiagnoseIllnessActivity : AppCompatActivity() {
 
         api = AccessApi(applicationContext)
         URL = api.getUrl()
-        TOKEN = api.getToken()
         LANGUAGE = api.getLang()
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -89,10 +90,12 @@ class DiagnoseIllnessActivity : AppCompatActivity() {
             true
         }
 
-        getSymptoms()
+        Timer("schedule", true).schedule(5000){
+            getSymptoms()
+        }
 
-        val adapterSearch: ArrayAdapter<String> = ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, symptoms)
-        val adapterConfirmSymptoms = ConfirmSymptomsAdapter(confirmedSymptoms, this)
+        val adapterSearch: ArrayAdapter<String> = ArrayAdapter<String>(applicationContext, android.R.layout.simple_dropdown_item_1line, symptoms)
+        val adapterConfirmSymptoms = ConfirmSymptomsAdapter(confirmedSymptoms, applicationContext)
 
         txt_search.threshold = 1
         txt_search.setAdapter(adapterSearch)
@@ -103,6 +106,8 @@ class DiagnoseIllnessActivity : AppCompatActivity() {
             confirmedSymptoms.add(symptoms.get(index))
             adapterConfirmSymptoms.notifyDataSetChanged()
         }
+        list_symptoms.layoutManager = LinearLayoutManager(applicationContext)
+        list_symptoms.adapter = adapterConfirmSymptoms
 
         btn_proceed.setOnClickListener {
             var ids: String = ""
@@ -123,9 +128,6 @@ class DiagnoseIllnessActivity : AppCompatActivity() {
             confirmedSymptoms.clear()
             adapterConfirmSymptoms.notifyDataSetChanged()
         }
-
-        list_symptoms.layoutManager = LinearLayoutManager(this)
-        list_symptoms.adapter = adapterConfirmSymptoms
     }
 
     fun getDiagnosis(id: String){
@@ -135,7 +137,8 @@ class DiagnoseIllnessActivity : AppCompatActivity() {
     }
 
     fun getSymptoms(){
-        var queue = Volley.newRequestQueue(applicationContext)
+        var queue = VolleySingleton.getInstance(applicationContext)
+        TOKEN = api.getToken()
         val currentUrl = URL + "/symptoms?token=" + TOKEN + "&language=" + LANGUAGE
         var request = StringRequest(Request.Method.GET, currentUrl, Response.Listener { response ->
             var stringResponse = response.toString()
@@ -149,7 +152,7 @@ class DiagnoseIllnessActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, error.toString(), Toast.LENGTH_SHORT).show()
         })
 
-        queue.add(request)
+        queue.addToRequestQueue(request)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
