@@ -1,6 +1,7 @@
 package edu.bluejack181.thedoctorcheckups
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_create_forum.view.*
+import kotlinx.android.synthetic.main.fragment_view_forum.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -49,9 +53,15 @@ class CreateForumFragment : Fragment() {
         var question: String = view.txt_question.text.toString()
         var userId: String = mAuth.currentUser!!.uid
 
+        var simpleDate = SimpleDateFormat("dd-MM-yyyy")
+        var dateClass = Date()
+
+        var dateIn: String = simpleDate.format(dateClass)
+
         var newForum = databaseRefForum!!.push()
-        newForum.setValue(Forum(title, question, userId))
+        newForum.setValue(Forum(title, question, userId, dateIn))
 
         Toast.makeText(curr_view.context, "Success insert forum", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(curr_view.context, ForumActivity::class.java))
     }
 }

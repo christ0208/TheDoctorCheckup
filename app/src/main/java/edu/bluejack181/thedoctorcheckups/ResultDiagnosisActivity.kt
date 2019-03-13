@@ -23,6 +23,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.concurrent.schedule
 import kotlin.math.max
 
 class ResultDiagnosisActivity : AppCompatActivity() {
@@ -101,7 +102,9 @@ class ResultDiagnosisActivity : AppCompatActivity() {
 
 //        Toast.makeText(applicationContext, userId, Toast.LENGTH_SHORT).show()
 
-        getGender(id)
+        Timer("fetchData", true).schedule(5000){
+            getGender(id)
+        }
 //        getYear(id)
 
 //        insertNewDiagnosis(userId)
