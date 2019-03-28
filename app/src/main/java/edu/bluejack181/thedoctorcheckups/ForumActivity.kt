@@ -72,9 +72,10 @@ class ForumActivity : AppCompatActivity() {
         var viewPager: ViewPager = findViewById(R.id.forum_pager)
         var tabLayout: TabLayout = findViewById(R.id.tab_layout)
 
-        adapter.addFragment(ViewForumFragment(), "Show All Forum")
-        adapter.addFragment(CreateForumFragment(), "Create Forum")
+        adapter.addFragment(ViewForumFragment(), "Show All Thread")
+        adapter.addFragment(CreateForumFragment(), "Create Thread")
         adapter.addFragment(SearchForumFragment(), "Search Thread")
+        adapter.addFragment(DeleteForumFragment(), "Delete Thread")
 
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
