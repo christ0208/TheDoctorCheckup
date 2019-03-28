@@ -24,12 +24,28 @@
             android:hint="Question for Forum"
             android:gravity="start"
             android:minLines="5"/>
+        
+        <AutoCompleteTextView
+            android:id="@+id/txt_tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tags, Separated by space"/>
 
         <Button
             android:id="@+id/btn_insert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Insert into Forum"/>
+        <Button
+            android:id="@+id/btn_reset_tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reset Tags"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

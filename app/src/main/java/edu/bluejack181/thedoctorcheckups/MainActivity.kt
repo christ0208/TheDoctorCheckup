@@ -5,9 +5,15 @@ Created by CP18-1
 
 package edu.bluejack181.thedoctorcheckups
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.NotificationCompat
+import android.support.v4.app.NotificationManagerCompat
 import android.util.Log
 import android.widget.Toast
 import com.facebook.*
@@ -66,6 +72,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        createNotificationChannel()
+
         configureGoogleSignIn()
         google_button.setOnClickListener {
             Toast.makeText(this, "Test 1", Toast.LENGTH_LONG).show()
@@ -100,6 +108,15 @@ class MainActivity : AppCompatActivity() {
                     .addOnCompleteListener(this){task->
                         if(task.isSuccessful){
                             Toast.makeText(applicationContext, "Success Login!", Toast.LENGTH_SHORT).show()
+                            var builder = NotificationCompat.Builder(this, "default")
+                                .setSmallIcon(R.drawable.ic_menu)
+                                .setContentTitle("The Doctor Checkup")
+                                .setContentText("You have logged on to application")
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+                            with(NotificationManagerCompat.from(this)){
+                                notify(1, builder.build())
+                            }
                             startActivity(Intent(applicationContext, DiagnoseIllnessActivity::class.java))
                         }
                         else{
@@ -111,6 +128,17 @@ class MainActivity : AppCompatActivity() {
         btn_register.setOnClickListener{
 //            Toast.makeText(this, "Testing Register", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, RegisterActivity::class.java))
+        }
+    }
+
+    private fun createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel("default", "testing", importance).apply {
+                description = "testing"
+            }
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
         }
     }
 

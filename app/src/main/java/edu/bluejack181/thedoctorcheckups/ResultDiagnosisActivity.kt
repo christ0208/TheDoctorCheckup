@@ -233,6 +233,7 @@ class ResultDiagnosisActivity : AppCompatActivity() {
         list_diagnose.layoutManager = LinearLayoutManager(this)
         list_diagnose.adapter = adapterConfirmSymptoms
 
+
         insertNewDiagnosis(userId)
     }
 

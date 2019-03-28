@@ -23,7 +23,7 @@ class ResultDiagnosisAdapter(val items: ArrayList<Diagnosis>, val context: Conte
         p0.accuracy.text = items.get(p1).accuracy.toString()
         p0.prof_name.text = items.get(p1).prof_name
         p0.medical_condition.text = items.get(p1).medical_condition
-        p0.treatmentDesc.text = items.get(p1).treatment
+        p0.treatmentDesc.text = "Solution: \n" + items.get(p1).treatment
     }
 }
 

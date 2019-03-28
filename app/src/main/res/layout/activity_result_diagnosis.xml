@@ -16,7 +16,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@android:color/holo_red_light"
+            app:titleTextColor="@android:color/white"
             android:theme="@style/Base.ThemeOverlay.AppCompat.ActionBar"/>
 
         <LinearLayout
@@ -29,6 +30,20 @@
                 android:id="@+id/list_diagnose"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Please check it out these thread too: "/>-->
+
+            <!--<android.support.v7.widget.RecyclerView-->
+                <!--android:id="@+id/list_recommend_forum"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"/>-->
 
         </LinearLayout>
 

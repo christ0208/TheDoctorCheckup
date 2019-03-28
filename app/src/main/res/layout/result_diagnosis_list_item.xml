@@ -40,4 +40,9 @@
         android:layout_height="wrap_content"
         android:text="treatment"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="asd"/>
+
 </LinearLayout>

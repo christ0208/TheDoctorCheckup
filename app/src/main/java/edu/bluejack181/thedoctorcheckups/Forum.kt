@@ -4,5 +4,6 @@ data class Forum(
     var title: String = "",
     var question: String = "",
     var userId: String = "",
-    var dateIn: String = ""
+    var dateIn: String = "",
+    var tags: ArrayList<String> = ArrayList()
 )

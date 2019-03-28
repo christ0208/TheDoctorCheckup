@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBar
 import android.support.v7.widget.Toolbar
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
@@ -71,8 +72,9 @@ class ForumActivity : AppCompatActivity() {
         var viewPager: ViewPager = findViewById(R.id.forum_pager)
         var tabLayout: TabLayout = findViewById(R.id.tab_layout)
 
-        adapter.addFragment(ViewForumFragment(), "Recommended Forum Today")
+        adapter.addFragment(ViewForumFragment(), "Show All Forum")
         adapter.addFragment(CreateForumFragment(), "Create Forum")
+        adapter.addFragment(SearchForumFragment(), "Search Thread")
 
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
