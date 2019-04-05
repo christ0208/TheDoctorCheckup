@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
+import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioGroup
@@ -45,6 +46,8 @@ class DiagnoseIllnessActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_diagnose_illness)
+
+        main_screen_diagnose.visibility = View.INVISIBLE
 
         api = AccessApi(applicationContext)
         URL = api.getUrl()
@@ -150,6 +153,8 @@ class DiagnoseIllnessActivity : AppCompatActivity() {
                 symptoms.add(jsonInner.getString("Name"))
                 idSymptoms.add(jsonInner.getInt("ID"))
             }
+            main_screen_diagnose.visibility = View.VISIBLE
+            load_screen_diagnose.visibility = View.GONE
         }, Response.ErrorListener { error ->
             Toast.makeText(applicationContext, error.toString(), Toast.LENGTH_SHORT).show()
         })

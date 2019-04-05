@@ -18,20 +18,16 @@ class ResultDiagnosisAdapter(val items: ArrayList<Diagnosis>, val context: Conte
     }
 
     override fun onBindViewHolder(p0: DiagnosisViewHolder, p1: Int) {
-        p0.id.text = items.get(p1).id.toString()
-        p0.name.text = items.get(p1).name
-        p0.accuracy.text = items.get(p1).accuracy.toString()
-        p0.prof_name.text = items.get(p1).prof_name
-        p0.medical_condition.text = items.get(p1).medical_condition
+        p0.name.text = "Illness Name: " + items.get(p1).name
+        p0.accuracy.text = "Accuracy: " + items.get(p1).accuracy.toString() + "%"
+        p0.medical_condition.text = "Description: \n" + items.get(p1).medical_condition
         p0.treatmentDesc.text = "Solution: \n" + items.get(p1).treatment
     }
 }
 
 class DiagnosisViewHolder(view: View): RecyclerView.ViewHolder(view){
-    var id = view.lbl_id
     var name = view.lbl_name
     var accuracy = view.lbl_accuracy
-    var prof_name = view.lbl_prof_name
     var medical_condition = view.lbl_medical_condition
     var treatmentDesc = view.lbl_treatment
 }

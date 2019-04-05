@@ -38,6 +38,8 @@ class ForumAdapter(val items: ArrayList<Forum>, val context: Context): RecyclerV
             p0.recommended.visibility = View.INVISIBLE
         }
 
+        p0.btn_delete.visibility = View.INVISIBLE
+
 //        Toast.makeText(context, list_tags.size, Toast.LENGTH_SHORT).show()
 
         p0.area.setOnClickListener {
@@ -51,6 +53,7 @@ class ForumAdapter(val items: ArrayList<Forum>, val context: Context): RecyclerV
 }
 
 class ForumViewHolder(view: View): RecyclerView.ViewHolder(view){
+    var btn_delete = view.btn_delete
     var area = view.item_forum
     var title = view.lbl_title
     var user = view.lbl_user

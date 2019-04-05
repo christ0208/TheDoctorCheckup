@@ -2,13 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/lbl_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="id"/>
+    android:orientation="vertical"
+    android:background="@drawable/line_border"
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/lbl_name"
@@ -23,12 +19,6 @@
         android:text="accuracy"/>
 
     <TextView
-        android:id="@+id/lbl_prof_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="prof_name"/>
-
-    <TextView
         android:id="@+id/lbl_medical_condition"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,10 +29,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="treatment"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="asd"/>
 
 </LinearLayout>

@@ -57,7 +57,16 @@ class RegisterActivity : AppCompatActivity() {
             val password = txt_password.text.toString()
             val cpassword = txt_confirm_password.text.toString()
 
-            if(password.length < 6){
+            if(name.length == 0){
+                Toast.makeText(applicationContext, "Name must be filled", Toast.LENGTH_SHORT).show()
+            }
+            else if(email.length == 0){
+                Toast.makeText(applicationContext, "Email must be filled", Toast.LENGTH_SHORT).show()
+            }
+            else if(address.length == 0){
+                Toast.makeText(applicationContext, "Address must be filled", Toast.LENGTH_SHORT).show()
+            }
+            else if(password.length < 6){
                 Toast.makeText(applicationContext, "Password must be more than 6 characters", Toast.LENGTH_SHORT).show()
             }
             else if(password != cpassword){

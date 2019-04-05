@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -48,6 +49,8 @@ class ResultDiagnosisActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result_diagnosis)
+
+        main_screen_result.visibility = View.INVISIBLE
 
         api = AccessApi(applicationContext)
         URL = api.getUrl()
@@ -233,6 +236,8 @@ class ResultDiagnosisActivity : AppCompatActivity() {
         list_diagnose.layoutManager = LinearLayoutManager(this)
         list_diagnose.adapter = adapterConfirmSymptoms
 
+        main_screen_result.visibility = View.VISIBLE
+        load_screen_result.visibility = View.GONE
 
         insertNewDiagnosis(userId)
     }

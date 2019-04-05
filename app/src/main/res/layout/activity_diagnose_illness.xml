@@ -23,43 +23,71 @@
             android:theme="@style/Base.ThemeOverlay.AppCompat.ActionBar"/>
 
         <LinearLayout
+            android:id="@+id/main_screen_diagnose"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="55dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Diagnose"/>
+                android:text="Symptoms"
+                android:textSize="18dp"/>
 
             <AutoCompleteTextView
                 android:id="@+id/txt_search"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="Enter your symptoms here"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp">
 
                 <Button
                     android:id="@+id/btn_reset"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Reset"/>
+                    android:text="Reset"
+                    android:background="@android:color/holo_red_light"
+                    android:layout_marginHorizontal="5dp" />
 
                 <Button
                     android:id="@+id/btn_proceed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Proceed"/>
+                    android:text="Proceed"
+                    android:background="#00E500"
+                    android:layout_marginHorizontal="5dp"/>
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="List of Sypmptoms: "/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/list_symptoms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/load_screen_diagnose"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="55dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Please wait"
+                android:gravity="center"/>
 
         </LinearLayout>
 

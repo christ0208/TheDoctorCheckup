@@ -46,4 +46,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_recommended" />
 
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Delete"
+        app:layout_constraintEnd_toStartOf="@+id/recommended_view"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@android:color/holo_red_light"/>
+
 </android.support.constraint.ConstraintLayout>

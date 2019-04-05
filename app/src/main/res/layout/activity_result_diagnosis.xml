@@ -21,8 +21,9 @@
             android:theme="@style/Base.ThemeOverlay.AppCompat.ActionBar"/>
 
         <LinearLayout
+            android:id="@+id/main_screen_result"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="55dp"
             android:orientation="vertical">
 
@@ -44,6 +45,21 @@
                 <!--android:id="@+id/list_recommend_forum"-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="wrap_content"/>-->
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/load_screen_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="55dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Please wait"
+                android:gravity="center"/>
 
         </LinearLayout>
 

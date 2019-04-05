@@ -43,7 +43,7 @@ class DeleteForumAdapter(val items: ArrayList<Forum>, val context: Context): Rec
 
 //        Toast.makeText(context, list_tags.size, Toast.LENGTH_SHORT).show()
 
-        p0.area.setOnClickListener {
+        p0.btn_delete.setOnClickListener {
             deleteThread(element)
         }
     }
