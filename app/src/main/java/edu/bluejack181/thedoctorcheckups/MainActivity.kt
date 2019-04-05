@@ -7,6 +7,7 @@ package edu.bluejack181.thedoctorcheckups
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -31,6 +32,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.math.PI
 
 class MainActivity : AppCompatActivity() {
 
@@ -108,11 +110,14 @@ class MainActivity : AppCompatActivity() {
                     .addOnCompleteListener(this){task->
                         if(task.isSuccessful){
                             Toast.makeText(applicationContext, "Success Login!", Toast.LENGTH_SHORT).show()
+                            var diagnoseIntent = Intent(this, DiagnoseIllnessActivity::class.java)
+                            var diagnosePendingIntent = PendingIntent.getActivity(this, 0, diagnoseIntent, 0)
                             var builder = NotificationCompat.Builder(this, "default")
                                 .setSmallIcon(R.drawable.ic_menu)
                                 .setContentTitle("The Doctor Checkup")
                                 .setContentText("You have logged on to application")
                                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                .addAction(R.drawable.ic_menu, "Go To Diagnosing Illness", diagnosePendingIntent)
 
                             with(NotificationManagerCompat.from(this)){
                                 notify(1, builder.build())
