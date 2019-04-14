@@ -75,13 +75,10 @@ class DiagnoseIllnessActivity : AppCompatActivity() {
                     startActivity(Intent(applicationContext, HealthHistoryActivity::class.java))
                     finish()
                 }
-                R.id.nav_forum ->{
+                R.id.nav_forum -> {
 //                    Toast.makeText(applicationContext, "Forum", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(applicationContext, ForumActivity::class.java))
                     finish()
-                }
-                R.id.nav_profile -> {
-                    Toast.makeText(applicationContext, "Profile", Toast.LENGTH_SHORT).show()
                 }
                 R.id.nav_logout ->{
                     mAuth.signOut()

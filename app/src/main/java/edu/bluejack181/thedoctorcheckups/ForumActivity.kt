@@ -54,9 +54,6 @@ class ForumActivity : AppCompatActivity() {
                     startActivity(Intent(applicationContext, ForumActivity::class.java))
                     finish()
                 }
-                R.id.nav_profile -> {
-                    Toast.makeText(applicationContext, "Profile", Toast.LENGTH_SHORT).show()
-                }
                 R.id.nav_logout ->{
                     mAuth.signOut()
                     startActivity(Intent(this, MainActivity::class.java))

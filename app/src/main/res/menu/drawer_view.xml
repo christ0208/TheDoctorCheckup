@@ -12,9 +12,6 @@
             android:id="@+id/nav_forum"
             android:title="Health Forum"/>
         <item
-            android:id="@+id/nav_profile"
-            android:title="Profile"/>
-        <item
             android:id="@+id/nav_logout"
             android:title="Logout"/>
     </group>
